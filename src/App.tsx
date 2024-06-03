@@ -8,7 +8,7 @@ function App() {
   const fetchMovies = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     if (search) {
-      fetch(`http://localhost:3000/movie?title=${encodeURIComponent(search)}`)
+      fetch(`http://localhost:4040/movie?title=${encodeURIComponent(search)}`)
         .then(response => response.json())
         .then(data => {
           console.log(data);
