@@ -24,13 +24,51 @@
     color: #B8B6AE;
     font-weight: 500;
     margin: 0.5em 0 2em 0;
-    ;
 }
 
-.bestChoice img {
-    height: 50%;
+.movie-card {
+    background-color: #1A1A1A;
+    position: relative;
+    overflow: hidden;
+    height: 370px;
+    width: 179px;
+    margin-right: 5px;
 }
 
-.carousel-wrapper {
-    margin: auto;
+.movie-card img {
+    height: 264px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.svg-container {
+    height: 36px;
+    margin: 5px
+}
+
+.svg-container svg {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.svgYellow {
+    fill:#F5C518
+}
+
+.svgBlue {
+    fill: #5799ef;
+}
+
+.svg-container span {
+    color: #B8B6AE;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 5px;
+}
+
+.svg-container button {
+    border: none;
+    background-color: #1A1A1A;
 }

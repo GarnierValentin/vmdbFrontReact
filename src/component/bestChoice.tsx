@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import MovieCard from './movie';
 import { Movie } from './types';
+import Slider from 'react-slick';
 
-import '../css/BestChoice.css'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import '../css/BestChoice.css';
 
 const BestChoice: React.FC = () => {
     const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
@@ -15,22 +16,26 @@ const BestChoice: React.FC = () => {
             .then(data => setTopRatedMovies(data.data));
     }, []);
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+    };
+
     return (
         <div className="bestChoice">
             <h1>Meilleurs choix</h1>
             <p>Séries et films rien que pour vous</p>
-            <div className="carousel-wrapper">
-                <Carousel infiniteLoop showThumbs={false} 
-                        showStatus={false}
-                        centerMode={true}
-                        centerSlidePercentage={33.33}
-                        className="custom-carousel">
+            <div className="slider-container">
+                <Slider {...settings}>
                     {topRatedMovies.map((movie, index) => (
                         <div key={index}>
                             <MovieCard movie={movie} />
                         </div>
                     ))}
-                </Carousel>
+                </Slider>
             </div>
         </div>
     );
