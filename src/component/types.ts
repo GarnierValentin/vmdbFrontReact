@@ -3,6 +3,7 @@ export interface Movie {
     plot: string;
     genres: string[];
     runtime: number;
+    metacritic: number;
     cast: string[];
     num_mflix_comments: number;
     poster: string;

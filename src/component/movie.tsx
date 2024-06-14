@@ -1,18 +1,21 @@
 import React from 'react';
 import { Movie } from './types';
+import { Link } from 'react-router-dom';
 
 interface MovieProps {
   movie: Movie | null;
+  index: number;
 }
 
-const MovieCard: React.FC<MovieProps> = ({ movie }) => {
+const MovieCard: React.FC<MovieProps> = ({ movie, index }) => {
   if (!movie) {
     return null;
   }
-  console.log(movie, 'movie');
   return (
     <div className="movie-card">
-      <img src={movie.poster || 'default_image_url'} alt={movie.title || 'default alt text'} />
+      <Link to={`/movie/${movie._id}`}>
+        <img src={movie.poster || 'default_image_url'} alt={movie.title || 'default alt text'} />
+      </Link>
       <div className="svg-container">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="svgYellow">
@@ -28,9 +31,19 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
           </span>
         </button>
       </div>
-      <h2>{movie.title}</h2>
+      <h2>{index + 1} - {movie.title}</h2>
+      <button className="buttonAddFavorite">
+        <svg xmlns="http://www.w3.org/2000/svg" className="svgAddFavorite" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+        </svg>
+        <span>Ajouter aux favoris</span>
+      </button>
+      <Link to={`/movie/${movie._id}`}>
+        <button className="buttonShowDetails">
+          <span>Voir plus en détail</span>
+        </button>
+      </Link>
     </div>
-
   );
 };
 

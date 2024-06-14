@@ -20,9 +20,57 @@ const BestChoice: React.FC = () => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 6,
         slidesToScroll: 1,
-    };
+        initialSlide: 0, 
+        centerMode: false,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 3,
+                infinite: true,
+                initialSlide: 0, 
+                centerMode: false,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 900,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 3,
+                infinite: true,
+                initialSlide: 0, 
+                centerMode: false,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 700,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                initialSlide: 0, 
+                centerMode: false,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: true,
+                initialSlide: 0, 
+                centerMode: false,
+                dots: true
+              }
+            }
+        ]
+    };    
 
     return (
         <div className="bestChoice">
@@ -32,7 +80,7 @@ const BestChoice: React.FC = () => {
                 <Slider {...settings}>
                     {topRatedMovies.map((movie, index) => (
                         <div key={index}>
-                            <MovieCard movie={movie} />
+                            <MovieCard movie={movie} index={index}/>
                         </div>
                     ))}
                 </Slider>

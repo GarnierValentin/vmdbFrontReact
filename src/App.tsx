@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './component/navBar';
 import BestChoice from './component/bestChoice';
+import MovieDetails from './component/movieDetails';
 
 import './css/App.css';
 
@@ -24,7 +25,10 @@ function App() {
     <Router>
       <div className="App">
         <NavBar search={search} setSearch={setSearch} fetchMovies={fetchMovies} />
-        <BestChoice />
+        <Routes>
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/" element={<BestChoice />} />
+        </Routes>
       </div>
     </Router>
   );

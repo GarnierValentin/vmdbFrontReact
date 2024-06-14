@@ -30,9 +30,8 @@
     background-color: #1A1A1A;
     position: relative;
     overflow: hidden;
-    height: 370px;
+    height: 100%;
     width: 179px;
-    margin-right: 5px;
 }
 
 .movie-card img {
@@ -43,32 +42,83 @@
 
 .svg-container {
     height: 36px;
-    margin: 5px
+    margin: 5px;
 }
 
 .svg-container svg {
-    width: 13px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     margin-right: 5px;
 }
 
+.svg-container span {
+    color: #B8B6AE;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px 20px 5px 5px;
+}
+
+.svg-container button {
+    border: none;
+    background-color: #1A1A1A;
+}
+
 .svgYellow {
-    fill:#F5C518
+    fill: #F5C518
 }
 
 .svgBlue {
     fill: #5799ef;
 }
 
-.svg-container span {
-    color: #B8B6AE;
-    font-size: 14px;
-    font-weight: 500;
-    margin: 5px;
+.buttonAddFavorite {
+    height: 36px;
+    width: 160px;
+    background-color: #2C2C2C;
+    color: #5799ef;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin: auto auto 10px auto;
 }
 
-.svg-container button {
-    border: none;
+.buttonAddFavorite:hover {
+    background-color: #223043;
+}
+
+.svgAddFavorite {
+    fill: #5799ef;
+    height: 24px;
+    width: 24px;
+
+}
+
+.buttonShowDetails {
+    height: 36px;
+    width: 160px;
     background-color: #1A1A1A;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto 10px auto;
+}
+
+.buttonShowDetails:hover {
+    background-color: #2C2C2C;
+}
+
+h2 {
+    height: 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
 }
