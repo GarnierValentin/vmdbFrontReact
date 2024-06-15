@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom';
 import { Movie } from './types';
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
+import ActorImage from './actorsImage';
+import ActorCarousel from './actorsCarousel';
 
 import '../css/movieDetails.css';
 
-const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw';
+const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw'; 
 
 Modal.setAppElement('#root');
 
@@ -125,16 +127,20 @@ const MovieDetails: React.FC = () => {
                     </span>
                 </div>
             </header>
-            <body>
-                <div>
-                    <span>
+            <main>
+                <div className="awards">
+                    <span className="metacritic-score">
                         Note de metacritic : {movie.metacritic && movie.metacritic > 0 ? movie.metacritic : "Non disponible"}
                     </span>
-                    <span>
-                        {movie.awards.wins && movie.awards.wins ? movie.awards.wins : "Non disponible"} victoires et {movie.awards.nominations && movie.awards.nominations ? movie.awards.nominations : "Non disponible"} nominations au total
+                    <span className="awards-details">
+                        {movie.awards.wins && movie.awards.wins ? movie.awards.wins : "0"} victoires et {movie.awards.nominations && movie.awards.nominations ? movie.awards.nominations : "0"} nominations au total
                     </span>
                 </div>
-            </body>
+                <div className="mainActors">
+                    <h2>Rôles principaux</h2>
+                    <ActorCarousel cast={movie.cast} />
+                </div>
+            </main>
         </div>
     );
 };

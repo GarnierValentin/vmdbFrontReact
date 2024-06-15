@@ -11,7 +11,6 @@
     width: 100%;
     padding-bottom: 5px;
     padding-top: 5px;
-    margin-bottom: 20px;
 }
 
 .navbar>* {
@@ -79,4 +78,12 @@
 
 input:focus {
     outline: none;
+}
+
+input::placeholder {
+    font-size: 24px;
+}
+
+input {
+    font-size: 24px;
 }

@@ -13,9 +13,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie, index }) => {
   }
   return (
     <div className="movie-card">
-      <Link to={`/movie/${movie._id}`}>
-        <img src={movie.poster || 'default_image_url'} alt={movie.title || 'default alt text'} />
-      </Link>
+      <img src={movie.poster || 'default_image_url'} alt={movie.title || 'default alt text'} />
       <div className="svg-container">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="svgYellow">

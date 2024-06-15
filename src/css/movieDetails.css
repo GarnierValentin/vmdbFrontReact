@@ -1,3 +1,7 @@
+html, body {
+    background-color: #ffffff;
+}
+
 .header-container {
     background-color: #121212;
     color: #ffffff;
@@ -99,7 +103,7 @@
     border: none;
     outline: none;
     width: 90%;
-    max-width: 800px; /* Ajout d'une largeur maximale pour éviter que la modal ne devienne trop grande */
+    max-width: 800px;
 }
 
 .overlay {
@@ -143,4 +147,27 @@
 
 .close-text {
     cursor: pointer;
+}
+
+.awards {
+    margin: 24px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #F5C518;
+    border-radius: 5px;
+}
+
+.metacritic-score {
+    background-color: #F5C518;
+    display: block;
+    padding: 12px 12px 8px 12px;
+    font-size: 16px;
+}
+
+.awards-details {
+    background-color: #ffffff;
+    display: block;
+    padding: 12px 12px 8px 12px;
+    font-weight: 400;
+    font-size: 16px;
 }
