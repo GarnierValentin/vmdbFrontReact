@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import SearchInput from './searchInput';
 
 import '../css/NavBar.css';
 
@@ -51,13 +52,7 @@ function NavBar({ search, setSearch, fetchMovies }: { search: string, setSearch:
                 overlayClassName="search-modal-overlay"
             >
                 <div className="modal-content">
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        placeholder="Rechercher dans VMDb"
-                    />
+                    <SearchInput />
                 </div>
             </Modal>
         </nav>
