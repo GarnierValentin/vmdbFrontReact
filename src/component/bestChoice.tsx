@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MovieCard from './movie';
+import MovieCard from './movieCard';
 import { Movie } from './types';
 import Slider from 'react-slick';
 
@@ -17,7 +17,7 @@ const BestChoice: React.FC = () => {
     }, []);
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 6,
@@ -33,7 +33,7 @@ const BestChoice: React.FC = () => {
                 infinite: true,
                 initialSlide: 0, 
                 centerMode: false,
-                dots: true
+                dots: false
               }
             },
             {
@@ -44,7 +44,7 @@ const BestChoice: React.FC = () => {
                 infinite: true,
                 initialSlide: 0, 
                 centerMode: false,
-                dots: true
+                dots: false
               }
             },
             {
@@ -55,7 +55,7 @@ const BestChoice: React.FC = () => {
                 infinite: true,
                 initialSlide: 0, 
                 centerMode: false,
-                dots: true
+                dots: false
               }
             },
             {
@@ -66,7 +66,7 @@ const BestChoice: React.FC = () => {
                 infinite: true,
                 initialSlide: 0, 
                 centerMode: false,
-                dots: true
+                dots: false
               }
             }
         ]

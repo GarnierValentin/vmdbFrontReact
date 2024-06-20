@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import ActorImage from './actorsImage';
 import '../css/ActorCarousel.css';
@@ -8,6 +8,13 @@ interface ActorCarouselProps {
 }
 
 const ActorCarousel: React.FC<ActorCarouselProps> = ({ cast }) => {
+
+  const [actorCast, setActorCast] = useState<string[]>([]);
+
+  useEffect(() => {
+    setActorCast(cast);
+  });
+  
   const settings = {
     dots: false,
     speed: 500,
@@ -18,13 +25,21 @@ const ActorCarousel: React.FC<ActorCarouselProps> = ({ cast }) => {
 
   return (
     <div className="actor-carousel">
-      <Slider {...settings}>
-        {cast.map((actor, index) => (
+      {cast.length >= 3 ? (
+        <Slider {...settings}>
+          {actorCast.map((actor, index) => (
+            <div key={index} className="actor-slide">
+              <ActorImage actorName={actor} />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        actorCast.map((actor, index) => (
           <div key={index} className="actor-slide">
             <ActorImage actorName={actor} />
           </div>
-        ))}
-      </Slider>
+        ))
+      )}
     </div>
   );
 };

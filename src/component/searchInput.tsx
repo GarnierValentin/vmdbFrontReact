@@ -1,32 +1,69 @@
 import React, { useState, useEffect } from 'react';
+import { Movie } from './types';
 
-const SearchInput: React.FC = () => {
+
+type SearchInputProps = {
+  handleBlurSearch: () => void;
+};
+
+const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
     const [search, setSearch] = useState('');
-    const [movieData, setMovieData] = useState(null);
+    const [movieData, setMovieData] = useState<Movie[]>([]);
+    const [typingTimeout, setTypingTimeout] = useState(0);
+    const [listOpen, setListOpen] = useState(false);
+
+    const handleOnFocus = () => {
+        setListOpen(true);
+    };
+
+    const handleBlur = () => {
+        setListOpen(false);
+        handleBlurSearch();
+    };
 
     useEffect(() => {
-        const fetchMovie = async () => {
-            if (search) {
-                const response = await fetch(`/movie/${encodeURIComponent(search)}`);
-                const data = await response.json();
-                setMovieData(data);
-                console.log(data);
-                
-            }
-        };
+        if (typingTimeout) {
+            clearTimeout(typingTimeout);
+        }
 
-        fetchMovie();
-    }, [search]);
+        setTypingTimeout(window.setTimeout(() => {
+            if (search) {
+                handleType();
+            }
+        }, 1000));
+        document.getElementById('inputSearch')?.focus();
+    }, [search])
+
+    const handleType = async () => {
+        const response = await fetch(`http://localhost:4040/movie/?title=${encodeURIComponent(search.trim())}`);
+        const data = await response.json();
+        setMovieData(data.data);
+        console.log(data, search);
+    }
+
+
 
     return (
         <div>
             <input
                 type="text"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)}
                 placeholder="Rechercher dans VMDb"
+                onFocus={handleOnFocus}
+                onBlur={handleBlur}
+                id="inputSearch"
             />
-            {/* {movieData && <div>{JSON.stringify(movieData)}</div>} Affichez les données */}
+
+            {listOpen && <ul>
+                {movieData.map((movie, index) => (
+                    <li key={index}>
+                        <h2>{movie.title}</h2>
+                        <p>Année : {movie.year}</p>
+                        <p>Acteurs principaux : {movie.cast}</p>
+                    </li>
+                ))}
+            </ul>}
         </div>
     );
 };

@@ -13,13 +13,17 @@ const ActorImage: React.FC<{ actorName: string }> = ({ actorName }) => {
         // const apiKey = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw';
         // const cseId = '5781fbbcf03ef4faa';
         const query = actorName;
-        
-        const response = await fetch(
-          `https://www.googleapis.com/customsearch/v1?searchType=image&num=1&key=${apiKey}&cx=${cseId}&q=${encodeURIComponent(query)}`
-        );
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+        let response;
+        
+        if (apiKey && cseId) {
+          response = await fetch(
+            `https://www.googleapis.com/customsearch/v1?searchType=image&num=1&key=${apiKey}&cx=${cseId}&q=${encodeURIComponent(query)}`
+          );
+        }
+        
+        if (!response?.ok) {
+          return new Error('Network response was not ok');
         }
 
         const data = await response.json();
@@ -37,7 +41,7 @@ const ActorImage: React.FC<{ actorName: string }> = ({ actorName }) => {
       }
     };
     fetchActorImage();
-  }, [actorName]);
+  }, []);
 
   const displayImageUrl = imageUrl ? imageUrl : defaultImageUrl;
 
