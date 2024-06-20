@@ -12,7 +12,6 @@ type SearchInputProps = {
 const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState<Movie[]>([]);
-    const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
     const [listOpen, setListOpen] = useState(false);
 
     const handleOnFocus = () => {
@@ -24,37 +23,23 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
         handleBlurSearch();
     };
 
-    const handleType = useCallback(async () => {
+    const handleType = useCallback(async (input: string) => {
         try {
-            const response = await fetch(`http://localhost:4040/movie/?title=${encodeURIComponent(search.trim())}`);
+            const response = await fetch(`http://localhost:4040/movie/?title=${encodeURIComponent(input.trim())}`);
             const data = await response.json();
             setMovieData(data.data);
         } catch (error) {
             console.error('Error fetching movie data:', error);
         }
-    }, [search]);
+    }, []);
 
     useEffect(() => {
-        if (typingTimeout) {
-            clearTimeout(typingTimeout);
-        }
-
         if (search.trim()) {
-            const timeoutId = setTimeout(() => {
-                handleType();
-            }, 1000);
-
-            setTypingTimeout(timeoutId);
+            handleType(search);
         } else {
             setMovieData([]);
         }
-
-        return () => {
-            if (typingTimeout) {
-                clearTimeout(typingTimeout);
-            }
-        };
-    }, [search, handleType, typingTimeout]);
+    }, [search, handleType]);
 
     useEffect(() => {
         console.log('Movie data:', movieData);
