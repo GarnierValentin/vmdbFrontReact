@@ -1,0 +1,52 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    z-index: 10;
+    overflow: auto;
+    scrollbar-width: none;
+    max-height: calc(100vh - 57px);
+}
+
+.searched-movie {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    list-style-type: none;
+    background-color: #1F1F1F;
+    padding: 10px;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searched-movie img {
+    width: 48px;
+    height: 71px;
+    margin-right: 5px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.movie-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.searched-movie h2 {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+.searched-movie p {
+    color: #AAAAAA;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0 0 5px 0;
+}
