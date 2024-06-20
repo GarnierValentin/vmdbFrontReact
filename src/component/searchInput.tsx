@@ -64,6 +64,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
                             <li className="searched-movie">
                                 <img
                                     src={movie.poster ? movie.poster : pictureNotFound}
+                                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = pictureNotFound;
+                                    }}
                                     alt={movie.title}
                                 />
                                 <div className="movie-details">
