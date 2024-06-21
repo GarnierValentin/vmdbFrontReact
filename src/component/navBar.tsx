@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchInput from './searchInput';
+import LogoImage from '../images/imdblogo.png';
 
 import '../css/NavBar.css';
 
@@ -26,7 +27,7 @@ function NavBar({ search, setSearch, fetchMovies }: { search: string, setSearch:
                         </svg>
                     </button>
                     <Link to="/" className="logo">
-                        <img src="/imdblogo.png" alt="Logo" />
+                        <img src={LogoImage} alt="Logo" />
                     </Link>
                     <div className="nav-items">
                         <button className="search-icon" onClick={handleOnFocus}>
