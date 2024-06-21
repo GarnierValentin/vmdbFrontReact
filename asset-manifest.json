@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/vmdbFrontReact/static/css/main.5cd8604b.css",
+    "main.js": "/vmdbFrontReact/static/js/main.2bcac187.js",
+    "static/js/453.e5a04842.chunk.js": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js",
+    "static/media/pictureNotFound.jpg": "/vmdbFrontReact/static/media/pictureNotFound.6ea45e285faeb766ee5e.jpg",
+    "static/media/imageDefault.png": "/vmdbFrontReact/static/media/imageDefault.cba8cd317dcfb4e5574d.png",
+    "static/media/slick.svg": "/vmdbFrontReact/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/vmdbFrontReact/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/vmdbFrontReact/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/vmdbFrontReact/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/vmdbFrontReact/index.html",
+    "main.5cd8604b.css.map": "/vmdbFrontReact/static/css/main.5cd8604b.css.map",
+    "main.2bcac187.js.map": "/vmdbFrontReact/static/js/main.2bcac187.js.map",
+    "453.e5a04842.chunk.js.map": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5cd8604b.css",
+    "static/js/main.2bcac187.js"
+  ]
+}
