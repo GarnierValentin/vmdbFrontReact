@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Movie } from './types';
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
-import ActorImage from './actorsImage';
 import ActorCarousel from './actorsCarousel';
 
 import '../css/movieDetails.css';
 
-const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw'; 
+const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw';
 
 Modal.setAppElement('#root');
 
@@ -17,6 +16,38 @@ const MovieDetails: React.FC = () => {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [youtubeVideoId, setYoutubeVideoId] = useState<string | null>(null);
+    const imgRef = useRef<HTMLImageElement>(null);
+    const [divWidth, setDivWidth] = useState<number>(0);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
+    const youtubeOpts = {
+        height: '390',
+        width: '640',
+        playerVars: {
+            autoplay: 1,
+        },
+    };
+
+    const searchTrailer = (movieTitle: string) => {
+        fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${encodeURIComponent(`${movieTitle} bande annonce VO`)}&part=snippet&type=video&maxResults=1`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.items.length > 0) {
+                    const videoId = data.items[0].id.videoId;
+                    setYoutubeVideoId(videoId);
+                    if (isMobile) {
+                        openModal();
+                    }
+                }
+            })
+            .catch(error => console.error('Erreur lors de la recherche de la bande-annonce sur YouTube:', error));
+    };
+
+    const handleDesktopDevice = () => {
+        if (movie) {
+            searchTrailer(movie.title);
+        }
+    };
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -33,32 +64,38 @@ const MovieDetails: React.FC = () => {
             .catch(error => console.error(error));
     }, [id]);
 
-    const searchTrailer = (movieTitle: string) => {
-        fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${encodeURIComponent(`${movieTitle} bande annonce VO`)}&part=snippet&type=video&maxResults=1`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.items.length > 0) {
-                    const videoId = data.items[0].id.videoId;
-                    setYoutubeVideoId(videoId);
-                    openModal();
-                } else {
-                    console.log('Aucune vidéo trouvée pour cette recherche.');
-                }
-            })
-            .catch(error => console.error('Erreur lors de la recherche de la bande-annonce sur YouTube:', error));
-    };
+    useEffect(() => {
+        const setWidth = () => {
+            if (imgRef.current) {
+                setDivWidth(imgRef.current.offsetWidth);
+            }
+        }
+        setWidth();
+    }, [movie]);
+
+    useEffect(() => {
+        const updateDeviceType = () => {
+            setIsMobile(window.innerWidth <= 768);
+        }
+        updateDeviceType();
+        window.addEventListener('resize', updateDeviceType);
+
+        if (!isMobile) {
+            handleDesktopDevice();
+        }
+
+        return () => window.removeEventListener('resize', updateDeviceType);
+    }, [isMobile]);
 
     if (!movie) {
         return <div>Loading...</div>;
     }
 
-    const youtubeOpts = {
-        height: '390',
-        width: '640',
-        playerVars: {
-            autoplay: 1,
-        },
-    };
+    if (imgRef.current?.offsetWidth !== divWidth) {
+        if (imgRef.current) {
+            setDivWidth(imgRef.current.offsetWidth);
+        }
+    }
 
     return (
         <div>
@@ -70,15 +107,15 @@ const MovieDetails: React.FC = () => {
                     </span>
                 </div>
                 <div className="img-container">
-                    <img src={movie.poster} alt={movie.title} />
-                    <div className="play-banner" onClick={() => searchTrailer(movie.title)}>
+                    <img ref={imgRef} src={movie.poster} alt={movie.title} />
+                    <div className="play-banner" id="play-banner" style={{ width: divWidth || 'auto' }} onClick={() => searchTrailer(movie.title)}>
                         <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M0 0h24v24H0z" fill="none" />
                             <path d="M2.533 2.53l18.437 10.035-18.437 10.04v-20.075z" />
                         </svg>
                     </div>
                 </div>
-                <Modal
+                {isMobile && <Modal
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     contentLabel="Trailer Modal"
@@ -101,6 +138,8 @@ const MovieDetails: React.FC = () => {
                         </div>
                     )}
                 </Modal>
+                }
+
                 <div className="bottomImg">
                     <span className="movieGenre">
                         {movie.genres.map((genre, index) => (

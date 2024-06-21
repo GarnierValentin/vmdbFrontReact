@@ -19,8 +19,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
     };
 
     const handleBlur = () => {
-        setListOpen(false);
-        handleBlurSearch();
+        setTimeout(() => {
+            setListOpen(false);
+            handleBlurSearch();
+        }, 100);
     };
 
     const handleType = useCallback(async (input: string) => {
@@ -73,7 +75,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
                                 <div className="movie-details">
                                     <h2>{movie.title}</h2>
                                     <p>Année : {movie.year}</p>
-                                    <p>Acteurs principaux : {movie.cast.join(', ')}</p>
+                                    <p>Acteurs principaux : {movie.cast ? movie.cast.join(', ') : 'Information non disponible'}</p>
                                 </div>
                             </li>
                         </Link>

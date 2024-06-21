@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+}
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -13,7 +17,6 @@ ul {
 }
 
 .searched-movie {
-    position: relative;
     display: flex;
     align-items: flex-start;
     list-style-type: none;
@@ -30,6 +33,7 @@ ul {
     margin-right: 5px;
     object-fit: cover;
     object-position: center;
+    margin: auto 10px;
 }
 
 .movie-details {
