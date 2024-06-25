@@ -10,9 +10,13 @@ function App() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState(null);
 
+  const apiBaseUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:4040'
+        : 'https://api.valentin-garnier.fr:4040';
+
   const fetchMovies = () => {
     if (search) {
-      fetch(`http://localhost:4040/movie?title=${encodeURIComponent(search)}`)
+      fetch(`${apiBaseUrl}/movie?tsitle=${encodeURIComponent(search)}`)
         .then(response => response.json())
         .then(data => {
           console.log(data);
