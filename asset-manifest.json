@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vmdbFrontReact/static/css/main.5cd8604b.css",
-    "main.js": "/vmdbFrontReact/static/js/main.8204bc83.js",
+    "main.js": "/vmdbFrontReact/static/js/main.3984c3db.js",
     "static/js/453.e5a04842.chunk.js": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js",
     "static/media/pictureNotFound.jpg": "/vmdbFrontReact/static/media/pictureNotFound.6ea45e285faeb766ee5e.jpg",
     "static/media/imageDefault.png": "/vmdbFrontReact/static/media/imageDefault.cba8cd317dcfb4e5574d.png",
@@ -12,11 +12,11 @@
     "static/media/slick.woff": "/vmdbFrontReact/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/vmdbFrontReact/index.html",
     "main.5cd8604b.css.map": "/vmdbFrontReact/static/css/main.5cd8604b.css.map",
-    "main.8204bc83.js.map": "/vmdbFrontReact/static/js/main.8204bc83.js.map",
+    "main.3984c3db.js.map": "/vmdbFrontReact/static/js/main.3984c3db.js.map",
     "453.e5a04842.chunk.js.map": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5cd8604b.css",
-    "static/js/main.8204bc83.js"
+    "static/js/main.3984c3db.js"
   ]
 }
