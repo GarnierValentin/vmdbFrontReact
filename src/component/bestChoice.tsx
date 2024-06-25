@@ -10,11 +10,15 @@ import '../css/BestChoice.css';
 const BestChoice: React.FC = () => {
     const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
 
+    const apiBaseUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:4040'
+        : 'https://api.valentin-garnier.fr:4040';
+
     useEffect(() => {
-        fetch('http://localhost:4040/top-rated')
-            .then(response => response.json())
-            .then(data => setTopRatedMovies(data.data));
-    }, []);
+      fetch(`${apiBaseUrl}/top-rated`)
+          .then(response => response.json())
+          .then(data => setTopRatedMovies(data.data));
+  }, []);
 
     const settings = {
         dots: false,

@@ -20,6 +20,10 @@ const MovieDetails: React.FC = () => {
     const [divWidth, setDivWidth] = useState<number>(0);
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
+    const apiBaseUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:4040'
+        : 'https://api.valentin-garnier.fr:4040';
+
     const youtubeOpts = {
         height: '390',
         width: '640',
@@ -58,7 +62,7 @@ const MovieDetails: React.FC = () => {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:4040/movie/${id}`)
+        fetch(`${apiBaseUrl}/movie/${id}`)
             .then(response => response.json())
             .then(data => setMovie(data.data))
             .catch(error => console.error(error));

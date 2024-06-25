@@ -14,6 +14,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
     const [movieData, setMovieData] = useState<Movie[]>([]);
     const [listOpen, setListOpen] = useState(false);
 
+    const apiBaseUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:4040'
+        : 'https://api.valentin-garnier.fr:4040';
+
     const handleOnFocus = () => {
         setListOpen(true);
     };
@@ -27,7 +31,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
 
     const handleType = useCallback(async (input: string) => {
         try {
-            const response = await fetch(`http://localhost:4040/movie/?title=${encodeURIComponent(input.trim())}`);
+            const response = await fetch(`${apiBaseUrl}/movie/?title=${encodeURIComponent(input.trim())}`);
             const data = await response.json();
             setMovieData(data.data);
         } catch (error) {
