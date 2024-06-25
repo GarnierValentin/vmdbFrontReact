@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename='/vmdbFrontReact'>
       <div className="App">
         <NavBar search={search} setSearch={setSearch} fetchMovies={fetchMovies} />
         <Routes>
