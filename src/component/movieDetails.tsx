@@ -24,11 +24,19 @@ const MovieDetails: React.FC = () => {
         ? 'http://localhost:4040'
         : 'https://api.valentin-garnier.fr:4040';
 
-    const youtubeOpts = {
+    const youtubeOptsMobile = {
         height: '390',
         width: '640',
         playerVars: {
             autoplay: 1,
+        },
+    };
+
+    const youtubeOptsDesktop = {
+        height: '390',
+        width: '640',
+        playerVars: {
+            autoplay: 0,
         },
     };
 
@@ -79,7 +87,7 @@ const MovieDetails: React.FC = () => {
 
     useEffect(() => {
         const updateDeviceType = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setIsMobile(window.innerWidth <= 1200);
         }
         updateDeviceType();
         window.addEventListener('resize', updateDeviceType);
@@ -90,6 +98,12 @@ const MovieDetails: React.FC = () => {
 
         return () => window.removeEventListener('resize', updateDeviceType);
     }, [isMobile]);
+
+    useEffect(() => {
+        if (!isMobile && movie) {
+            searchTrailer(movie.title);
+        }
+    }, [isMobile, movie]);
 
     if (!movie) {
         return <div>Loading...</div>;
@@ -112,12 +126,19 @@ const MovieDetails: React.FC = () => {
                 </div>
                 <div className="img-container">
                     <img ref={imgRef} src={movie.poster} alt={movie.title} />
-                    <div className="play-banner" id="play-banner" style={{ width: divWidth || 'auto' }} onClick={() => searchTrailer(movie.title)}>
-                        <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M2.533 2.53l18.437 10.035-18.437 10.04v-20.075z" />
-                        </svg>
-                    </div>
+                    {isMobile && (
+                        <div className="play-banner" id="play-banner" style={{ width: divWidth || 'auto' }} onClick={() => searchTrailer(movie.title)}>
+                            <svg className="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M2.533 2.53l18.437 10.035-18.437 10.04v-20.075z" />
+                            </svg>
+                        </div>
+                    )}
+                    {!isMobile && (
+                        <div className="video-container">
+                            {youtubeVideoId && <YouTube videoId={youtubeVideoId} opts={youtubeOptsDesktop} />}
+                        </div>
+                    )}
                 </div>
                 {isMobile && <Modal
                     isOpen={modalIsOpen}
@@ -138,7 +159,7 @@ const MovieDetails: React.FC = () => {
                     </div>
                     {youtubeVideoId && (
                         <div className="video-container">
-                            <YouTube videoId={youtubeVideoId} opts={youtubeOpts} />
+                            <YouTube videoId={youtubeVideoId} opts={youtubeOptsMobile} />
                         </div>
                     )}
                 </Modal>
