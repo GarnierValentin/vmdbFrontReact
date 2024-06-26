@@ -37,7 +37,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
         } catch (error) {
             console.error('Error fetching movie data:', error);
         }
-    }, []);
+    }, [apiBaseUrl]);
 
     useEffect(() => {
         if (search.trim()) {

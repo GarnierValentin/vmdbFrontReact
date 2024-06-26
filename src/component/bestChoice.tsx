@@ -18,7 +18,7 @@ const BestChoice: React.FC = () => {
       fetch(`${apiBaseUrl}/top-rated`)
           .then(response => response.json())
           .then(data => setTopRatedMovies(data.data));
-  }, []);
+  }, [apiBaseUrl]);
 
     const settings = {
         dots: false,
