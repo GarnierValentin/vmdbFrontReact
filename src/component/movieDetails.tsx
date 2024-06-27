@@ -74,7 +74,7 @@ const MovieDetails: React.FC = () => {
             .then(response => response.json())
             .then(data => setMovie(data.data))
             .catch(error => console.error(error));
-    }, [id]);
+    }, [id, apiBaseUrl]);
 
     useEffect(() => {
         const setWidth = () => {
