@@ -74,7 +74,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
             />
 
             {listOpen && (
-                <ul>
+                <ul className="search-list">
                     {movieData.map((movie, index) => (
                         <Link to={`/movie/${movie._id}`} key={index}>
                             <li className="searched-movie">

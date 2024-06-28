@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import { Movie } from './types';
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
-import ActorCarousel from './actorsCarousel';
+import ActorImage from './actorsImage';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+
+import '../../node_modules/swiper/swiper-bundle.css';
 import '../css/movieDetails.css';
 
 const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw';
@@ -19,6 +22,7 @@ const MovieDetails: React.FC = () => {
     const imgRef = useRef<HTMLImageElement>(null);
     const [divWidth, setDivWidth] = useState<number>(0);
     const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isTablet, setIsTablet] = useState<boolean>(false);
 
     const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
@@ -98,6 +102,14 @@ const MovieDetails: React.FC = () => {
 
         return () => window.removeEventListener('resize', updateDeviceType);
     }, [isMobile]);
+
+    useEffect(() => {
+        const updateDeviceType = () => {
+            setIsTablet(window.innerWidth <= 768);
+        }
+        updateDeviceType();
+        window.addEventListener('resize', updateDeviceType);
+    }, [isTablet]);
 
     useEffect(() => {
         if (!isMobile && movie) {
@@ -200,10 +212,29 @@ const MovieDetails: React.FC = () => {
                         {movie.awards.wins && movie.awards.wins ? movie.awards.wins : "0"} victoires et {movie.awards.nominations && movie.awards.nominations ? movie.awards.nominations : "0"} nominations au total
                     </span>
                 </div>
-                <div className="mainActors">
-                    <h2>Rôles principaux</h2>
-                    <ActorCarousel cast={movie.cast} />
-                </div>
+                <h2>Rôles principaux</h2>
+                {isTablet ? (
+                    <Swiper
+                        slidesPerView={3}
+                        spaceBetween={20}
+                        pagination={{ clickable: true }}
+                        className="mainActors"
+                    >
+                        {movie.cast.map((actor, index) => (
+                            <SwiperSlide key={index} className="actor-item">
+                                <ActorImage actorName={actor} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                ) : (
+                    <ul className="mainActors">
+                        {movie.cast.map((actor, index) => (
+                            <li key={index} className="actor-item">
+                                <ActorImage actorName={actor} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </main>
         </div>
     );
