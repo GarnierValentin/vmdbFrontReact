@@ -55,12 +55,21 @@ ul {
     margin: 0 0 5px 0;
 }
 
+.nav-items-mobile {
+    margin-right: 20px; 
+}
+
 .nav-items-desktop {
-    margin: auto 10px;
+    margin: auto 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 31px;
+    flex: 3;
+}
+
+.nav-items-desktop div {
+    width: 100%;
 }
 
 .nav-items-desktop input {

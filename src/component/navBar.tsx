@@ -71,7 +71,7 @@ function NavBar({ search, setSearch, fetchMovies, user, handleSetUser }: { searc
                         )
                         }
                         <button className="login" onClick={handleOnFocusAuth}>Se connecter</button>
-                        <button className="useAppli">Utiliser l'appli</button>
+                        {/* <button className="useAppli">Utiliser l'appli</button> */}
                     </div>
                 }
                 {searchOpen &&

@@ -12,10 +12,6 @@
     padding: 5px 5px 5px 10px;
 }
 
-.navbar>* {
-    flex: 1;
-}
-
 .navbar button,
 .navbar input {
     border: none;
@@ -33,19 +29,31 @@
 }
 
 .logo {
-    flex: 0.1;
+    margin-right: auto;
 }
 
 .logo img {
     height: 100%;
 }
 
+/* avec .useappli */
 .login {
     color: white;
     border: none;
     background: transparent;
     white-space: nowrap;
     cursor: pointer;
+}
+
+/* sans .useappli */
+.login {
+    flex: 1;
+    width: 200px;
+    color: black;
+    background-color: #F5C518;
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer
 }
 
 .search-icon svg {
@@ -91,4 +99,13 @@ input::placeholder {
 
 input {
     font-size: 24px;
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        justify-content: space-between;
+    }
+    .login {    
+        flex: 0 1 auto;
+    }
 }
