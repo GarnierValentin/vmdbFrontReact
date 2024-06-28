@@ -9,6 +9,7 @@ import './css/App.css';
 function App() {
   const [search, setSearch] = useState('');
   const [data, setData] = useState(null);
+  const [user, setUser] = useState({ email: '', password: '' });
 
   const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
@@ -25,10 +26,14 @@ function App() {
     }
   }
 
+  const handleSetUser = (email: string, password: string) => {
+    setUser({ email, password });
+  }
+
   return (
     <Router basename='/vmdbFrontReact'>
       <div className="App">
-        <NavBar search={search} setSearch={setSearch} fetchMovies={fetchMovies} />
+        <NavBar search={search} setSearch={setSearch} fetchMovies={fetchMovies} user={user} handleSetUser={handleSetUser}/>
         <Routes>
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/" element={<BestChoice />} />

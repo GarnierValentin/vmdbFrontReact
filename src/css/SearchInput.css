@@ -54,3 +54,40 @@ ul {
     font-size: 14px;
     margin: 0 0 5px 0;
 }
+
+.nav-items-desktop {
+    margin: auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 31px;
+}
+
+.nav-items-desktop input {
+    border-radius: 5px 0 0 5px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    width: 100%;
+    height: 31px;
+    line-height: 31px;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.nav-items-desktop input::placeholder {
+    font-size: 14px;
+    color: #A6A7A6;
+    font-weight: 400;
+}
+
+.nav-items-desktop svg {
+    fill: #757575;
+    height: 21px;
+    width: 30px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+    padding: 5px;
+    cursor: pointer;
+}

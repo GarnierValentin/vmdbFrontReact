@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Movie } from './types';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState<Movie[]>([]);
     const [listOpen, setListOpen] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
@@ -51,6 +52,12 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
         console.log('Movie data:', movieData);
     }, [movieData]);
 
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
     return (
         <div>
             <input
@@ -61,6 +68,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
                 onFocus={handleOnFocus}
                 onBlur={handleBlur}
                 id="inputSearch"
+                ref={inputRef}
+                autoComplete='off'
+                spellCheck='false'
             />
 
             {listOpen && (
