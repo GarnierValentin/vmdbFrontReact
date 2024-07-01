@@ -1,0 +1,45 @@
+.favorite-movie {
+    color: white;
+    background-color: #121212;
+    padding: 0.75em;
+}
+
+.favorite-movie h1 {
+    position: relative;
+    padding-left: 10px;
+}
+
+.favorite-movie h1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #F5C518;
+    border-radius: 4px;
+}
+
+.movie-card {
+    background-color: #1A1A1A;
+    position: relative;
+    overflow: hidden;
+    margin-right: 5px;
+    height: 100%;
+    width: 179px;
+}
+
+.fakemovie-card {
+    height: 462px;
+    width: 179px;
+    background-color: #1A1A1A;
+}
+
+h2 {
+    height: 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
