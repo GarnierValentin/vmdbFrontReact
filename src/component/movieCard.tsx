@@ -2,7 +2,7 @@ import React from 'react';
 import { Movie } from './types';
 import { Link } from 'react-router-dom';
 
-interface MovieProps {
+type MovieProps = {
   movie: Movie | null;
   index: number;
 }

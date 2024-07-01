@@ -7,9 +7,10 @@ import pictureNotFound from '../images/pictureNotFound.jpg';
 
 type SearchInputProps = {
     handleBlurSearch: () => void;
+    fetchMovies: () => void;
 };
 
-const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch, fetchMovies }) => {
     const [search, setSearch] = useState('');
     const [movieData, setMovieData] = useState<Movie[]>([]);
     const [listOpen, setListOpen] = useState(false);
