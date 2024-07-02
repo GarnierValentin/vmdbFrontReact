@@ -20,19 +20,55 @@
     border-radius: 4px;
 }
 
-.movie-card {
+.favorite-movie p {
+    color: #B8B6AE;
+    font-weight: 500;
+    margin: 0.5em 0 2em 0;
+}
+
+.fakemovie-card, .empty-card {
     background-color: #1A1A1A;
     position: relative;
     overflow: hidden;
-    margin-right: 5px;
-    height: 100%;
-    width: 179px;
+    padding: 10px;
+    width: 159px;
 }
 
-.fakemovie-card {
-    height: 462px;
-    width: 179px;
-    background-color: #1A1A1A;
+.fakemovie-card-img, .empty-card-top {
+    height: 264px;
+    width: 100%;
+    background-color: #2A2A2A;
+    margin-bottom: 10px;
+}
+
+.fakemovie-card-title {
+    height: 36px;
+    width: 100%;
+    background-color: #2A2A2A;
+    margin-bottom: 10px; 
+}
+
+.fakemovie-card-button {
+    height: 36px;
+    width: 100%;
+    background-color: #2A2A2A;
+}
+
+.empty-card-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-card-bottom {
+    height: 82px;
+    width: 100%;
+    background-color: #2A2A2A;
+    color: #B8B6AE;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {

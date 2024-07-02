@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 type MovieProps = {
   movie: Movie | null;
   index: number;
+  isFavorite: boolean;
 }
 
-const MovieCard: React.FC<MovieProps> = ({ movie, index }) => {
+const MovieCard: React.FC<MovieProps> = ({ movie, index, isFavorite }) => {
   if (!movie) {
     return null;
   }
   return (
     <div className="movie-card">
-      <img src={movie.poster || 'default_image_url'} alt={movie.title || 'default alt text'} />
+      <img src={movie.poster || 'default_image_url'} alt={movie.title || 'Titre du film'} />
       <div className="svg-container">
         <span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="svgYellow">

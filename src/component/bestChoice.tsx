@@ -24,14 +24,14 @@ const BestChoice: React.FC = () => {
       <h1>Meilleurs choix</h1>
       <p>Séries et films rien que pour vous</p>
         <Swiper
-          slidesPerView={10}
-          spaceBetween={20}
+          slidesPerView={'auto'}
+          spaceBetween={10}
           pagination={{ clickable: true }}
           className="movie-container"
         >
           {topRatedMovies.map((movie, index) => (
             <SwiperSlide key={index}>
-              <MovieCard movie={movie} index={index} />
+              <MovieCard movie={movie} index={index} isFavorite={false} />
             </SwiperSlide>
           ))}
         </Swiper>

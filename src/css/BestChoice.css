@@ -38,7 +38,8 @@
 .movie-card img {
     height: 264px;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .svg-container {
@@ -121,4 +122,8 @@ h2 {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-right: 10px;
+}
+
+.swiper-slide {
+    width: auto;
 }
