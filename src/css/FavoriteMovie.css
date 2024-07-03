@@ -85,4 +85,31 @@ h2 {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-right: 10px;
+    
+}
+
+.buttonRemoveFavorite {
+    height: 36px;
+    width: 160px;
+    background-color: #2C2C2C;
+    /* color: #ca4f4f; */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+}
+
+.buttonRemoveFavorite:hover {
+    background-color: #432222;
+}
+
+.buttonRemoveFavorite svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    fill: #ca4f4f;
 }

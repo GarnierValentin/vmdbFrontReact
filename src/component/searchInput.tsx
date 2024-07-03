@@ -50,10 +50,6 @@ const SearchInput: React.FC<SearchInputProps> = ({ handleBlurSearch, fetchMovies
     }, [search, handleType]);
 
     useEffect(() => {
-        console.log('Movie data:', movieData);
-    }, [movieData]);
-
-    useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus();
         }

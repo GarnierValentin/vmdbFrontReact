@@ -3,10 +3,18 @@ import MovieCard from './movieCard';
 import { Movie } from './types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+
 import '../../node_modules/swiper/swiper-bundle.css';
 import '../css/BestChoice.css';
 
-const BestChoice: React.FC = () => {
+type BestChoiceProps = {
+  user: { email: string; sessionToken: string };
+  refresh: boolean;
+  setRefresh: (refresh: boolean) => void;
+
+};
+
+const BestChoice: React.FC<BestChoiceProps> = ({ user, refresh, setRefresh }) => {
   const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
 
   const apiBaseUrl = window.location.hostname === 'localhost'
@@ -31,7 +39,7 @@ const BestChoice: React.FC = () => {
         >
           {topRatedMovies.map((movie, index) => (
             <SwiperSlide key={index}>
-              <MovieCard movie={movie} index={index} isFavorite={false} />
+              <MovieCard movie={movie} index={index} isFavorite={false} user={user} refresh={refresh} setRefresh={setRefresh}/>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -7,7 +7,7 @@ import '../css/AuthForm.css';
 interface AuthFormProps {
   isOpen: boolean;
   onClose: () => void;
-  handleSetUser: (email: string, password: string) => void;
+  handleSetUser: (email: string, sessionToken: string ) => void;
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ isOpen, onClose, handleSetUser }) => {
@@ -51,9 +51,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ isOpen, onClose, handleSetUser }) =
           password: hash,
         }),
       })
+
       if (response.ok) {
         const data = await response.json();
-        handleSetUser(data.email, data.password);
+        handleSetUser(email, data.sessionToken);
         onClose();
       }
     }
@@ -84,7 +85,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ isOpen, onClose, handleSetUser }) =
       })
       if (response.ok) {
         const data = await response.json();
-        handleSetUser(data.email, data.password);
+        handleSetUser(email, data.sessionToken);
         onClose();
       }
     }
@@ -124,8 +125,6 @@ useEffect(() => {
       signUpEmailRef.current!.title = "";
     }
   }
-  console.log(signUpEmail.match(regex));
-
 }, [signUpEmail]);
 
 useEffect(() => {

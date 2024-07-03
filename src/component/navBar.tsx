@@ -7,11 +7,12 @@ import LogoImage from '../images/imdblogo.png';
 import '../css/NavBar.css';
 
 type NavBarProps = {
-    user: { email: string; password: string };
-    handleSetUser: (email: string, password: string) => void;
+    user: { email: string; sessionToken: string };
+    handleSetUser: (email: string, sessionToken: string) => void;
+    handleLogout: () => void;
 };
 
-function NavBar({user, handleSetUser }: NavBarProps) {
+function NavBar({user, handleSetUser, handleLogout }: NavBarProps) {
     const [search, setSearch] = useState('');
     const [searchOpen, setSearchOpen] = useState(false);
     const [authOpen, setAuthOpen] = useState(false);
@@ -85,7 +86,8 @@ function NavBar({user, handleSetUser }: NavBarProps) {
                                 </svg>
                             </div>
                         )}
-                        <button className="login" onClick={handleOnFocusAuth}>Se connecter</button>
+                        {!user.sessionToken && <button className="login" onClick={handleOnFocusAuth}>Se connecter</button>}
+                        {user.sessionToken && <button className="login" onClick={handleLogout}>Se deconnecter</button>}
                     </div>
                 }
                 {searchOpen &&
