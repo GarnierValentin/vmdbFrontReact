@@ -65,7 +65,8 @@
     align-items: center;
     justify-content: center;
     height: 31px;
-    flex: 3;
+    flex: 1;
+    max-width: 800px;
 }
 
 .nav-items-desktop div {

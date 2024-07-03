@@ -54,10 +54,42 @@ const AuthForm: React.FC<AuthFormProps> = ({ isOpen, onClose, handleSetUser }) =
       if (response.ok) {
         const data = await response.json();
         handleSetUser(data.email, data.password);
+        onClose();
       }
     }
     catch (error) {
       console.error('Erreur lors de la connexion:', error);
+    }
+  }
+
+  const handleSubmitSignUp = async () => {
+    const email = signUpEmail;
+    const password = signUpPassword;
+    const nickname = signUpNickname;
+    const combinedString = email + password;
+
+    const hash = CryptoJS.SHA256(combinedString).toString(CryptoJS.enc.Hex);
+    
+    try {
+      const response = await fetch(`${apiBaseUrl}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password: hash,
+          nickname,
+        }),
+      })
+      if (response.ok) {
+        const data = await response.json();
+        handleSetUser(data.email, data.password);
+        onClose();
+      }
+    }
+    catch (error) {
+      console.error('Erreur lors de l\'inscription:', error);
     }
   }
 
@@ -148,31 +180,30 @@ return (
               placeholder="Mot de passe" value={signUpPassword} ref={signUpPasswordRef} />
             <input onChange={(e) => setSignUpPasswordConfirm(e.target.value)} type="password" name="passwordConfirm" id="signup_passwordConfirm"
               placeholder="Confirmer le mot de passe" value={signUpPasswordConfirm} ref={signUpPasswordConfirmRef} />
-            <button type="submit" className="button button-block" id="signup_button">Inscription</button>
+            <button type="submit" className="button button-block" id="signup_button" onClick={handleSubmitSignUp}>Inscription</button>
           </div>
         </div>
 
         <div className="form-container sign-in">
-          <form>
+          <div className="form">
             <h1>Connexion</h1>
             <input onChange={(e) => setSignInEmail(e.target.value)} type="email" name="email" id="connect_email"
               placeholder="Email" value={signInEmail} ref={signInEmailRef} />
             <input onChange={(e) => setSignInPassword(e.target.value)} type="password" name="password" id="connect_password"
               placeholder="Mot de passe" value={signInPassword} ref={signInPasswordRef} />
-            <button type="submit" className="button button-block" id="connect_button">Connexion</button>
-          </form>
+            <button type="submit" className="button button-block" id="connect_button" onClick={handleSubmitSignIn}>Connexion</button>
+          </div>
         </div>
 
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
               <h1>De retour ?</h1>
-              <p>Enter your personal details</p>
+              <p>Connecte toi avec tes données personnelles</p>
               <button className="hidden" id="login" onClick={() => setIsActive(false)}>Connexion</button>
             </div>
             <div className="toggle-panel toggle-right">
               <h1>VMDB</h1>
-              <p>Connecte toi avec tes données personnelles</p>
               <button className="hidden" id="register" onClick={() => setIsActive(true)}>Inscription</button>
             </div>
           </div>

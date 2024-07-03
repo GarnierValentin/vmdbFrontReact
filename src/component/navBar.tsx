@@ -51,7 +51,7 @@ function NavBar({user, handleSetUser }: NavBarProps) {
 
     useEffect(() => {
         const updateDeviceType = () => {
-            setIsMobile(window.innerWidth <= 800);
+            setIsMobile(window.innerWidth <= 600);
         }
         updateDeviceType();
         window.addEventListener('resize', updateDeviceType);

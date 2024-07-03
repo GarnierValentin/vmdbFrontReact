@@ -17,11 +17,13 @@ function App() {
 
   return (
     <Router basename='/vmdbFrontReact'>
-      <div className="App">
+      <div className="app">
         <NavBar user={user} handleSetUser={handleSetUser}/>
-        <FavoriteMovie />
         <Routes>
-          <Route path="/" element={<BestChoice />} />
+        <Route path="/" element={<>
+            <FavoriteMovie />
+            <BestChoice />
+          </>} />
           <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </div>

@@ -9,10 +9,26 @@ import '../css/FavoriteMovie.css';
 const FavoriteMovie: React.FC = () => {
     const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [fakeMovieCount, setFakeMovieCount] = useState<number>(10);
 
     const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
         : 'https://api.valentin-garnier.fr:4040';
+
+    const updateFakeMovieCount = () => {
+        const cardWidth = 195;
+        const width = window.innerWidth;
+        const count = Math.floor(width / cardWidth);
+        setFakeMovieCount(count);
+    };
+
+    useEffect(() => {
+        updateFakeMovieCount();
+        window.addEventListener('resize', updateFakeMovieCount);
+        return () => {
+            window.removeEventListener('resize', updateFakeMovieCount);
+        };
+    }, []);
 
     useEffect(() => {
         fetch(`${apiBaseUrl}/favorite`)
@@ -29,11 +45,13 @@ const FavoriteMovie: React.FC = () => {
             <p>Vos films favoris</p>
             {loading ? (
                 <div className="fakemovie-container">
-                    <div className="fakemovie-card">
-                        <div className="fakemovie-card-img"></div>
-                        <div className="fakemovie-card-title"></div>
-                        <div className="fakemovie-card-button"></div>
-                    </div>
+                    {Array.from({ length: fakeMovieCount }).map((_, index) => (
+                        <div className="fakemovie-card" key={index}>
+                            <div className="fakemovie-card-img"></div>
+                            <div className="fakemovie-card-title"></div>
+                            <div className="fakemovie-card-button"></div>
+                        </div>
+                    ))}
                 </div>
             ) : favoriteMovies.length === 0 ? (
                 <div className="empty-container">

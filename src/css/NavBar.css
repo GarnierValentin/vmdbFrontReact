@@ -5,8 +5,13 @@
 }
 
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     background-color: #121212;
     display: flex;
+    justify-content: space-between;
     height: 45px;
     width: 100%;
     padding: 5px 5px 5px 10px;
@@ -29,7 +34,7 @@
 }
 
 .logo {
-    margin-right: auto;
+    max-width: 50px;
 }
 
 .logo img {
@@ -49,6 +54,7 @@
 .login {
     flex: 1;
     width: 200px;
+    max-width: 200px;
     color: black;
     background-color: #F5C518;
     border-radius: 8px;
