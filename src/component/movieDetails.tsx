@@ -45,7 +45,7 @@ const MovieDetails: React.FC = () => {
     };
 
     const searchTrailer = (movieTitle: string) => {
-        fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${encodeURIComponent(`${movieTitle} bande annonce VO`)}&part=snippet&type=video&maxResults=1`)
+        fetch(`https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&q=${encodeURIComponent(`${movieTitle} trailer`)}&part=snippet&type=video&maxResults=1`)
             .then(response => response.json())
             .then(data => {
                 if (data.items.length > 0) {
