@@ -44,7 +44,6 @@ const FavoriteMovie: React.FC<FavoriteMovieProps> = ({ user, refresh, setRefresh
                 const response = await fetch(`${apiBaseUrl}/favorites?email=${user.email}&sessionToken=${user.sessionToken}`);
                 const data = await response.json();
                 setFavoriteMoviesId(data.data || []);
-                console.log(data.data);
             } catch (error) {
                 console.error('Error fetching favorite movies:', error);
             } finally {
@@ -64,7 +63,6 @@ const FavoriteMovie: React.FC<FavoriteMovieProps> = ({ user, refresh, setRefresh
                 });
                 const movies = await Promise.all(promises);
                 setFavoriteMovies(movies);
-                console.log(movies);
                 
             } catch (error) {
                 console.error('Error fetching favorite movies:', error);

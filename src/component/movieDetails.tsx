@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { Movie } from './types';
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
 import ActorImage from './actorsImage';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { addFavorite } from './api';
 
 import '../../node_modules/swiper/swiper-bundle.css';
 import '../css/movieDetails.css';
 
 const YOUTUBE_API_KEY = 'AIzaSyDpN8j4ONRKY12LFC-ksN-SiiMinSG2Okw';
-
 Modal.setAppElement('#root');
 
 const MovieDetails: React.FC = () => {
@@ -23,6 +22,10 @@ const MovieDetails: React.FC = () => {
     const [divWidth, setDivWidth] = useState<number>(0);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [isTablet, setIsTablet] = useState<boolean>(false);
+    const [player, setPlayer] = useState<any>(null);
+
+    const location = useLocation();
+    const { user, refresh, setRefresh } = location.state ?? { user: undefined, refresh: undefined, setRefresh: undefined };
 
     const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
@@ -42,6 +45,18 @@ const MovieDetails: React.FC = () => {
         playerVars: {
             autoplay: 0,
         },
+    };
+
+    const onPlayerReady = (event: any) => {
+        setPlayer(event.target);
+    };
+
+    const playVideo = () => {
+        if (player) {
+            player.playVideo();
+        } else {
+            console.log('Le lecteur n\'est pas encore prêt.');
+        }
     };
 
     const searchTrailer = (movieTitle: string) => {
@@ -148,34 +163,35 @@ const MovieDetails: React.FC = () => {
                     )}
                     {!isMobile && (
                         <div className="video-container">
-                            {youtubeVideoId && <YouTube videoId={youtubeVideoId} opts={youtubeOptsDesktop} />}
+                            {youtubeVideoId && <YouTube videoId={youtubeVideoId} opts={youtubeOptsDesktop} onReady={onPlayerReady} />}
                         </div>
                     )}
                 </div>
-                {isMobile && <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Trailer Modal"
-                    className="modal"
-                    overlayClassName="overlay"
-                >
-                    <div className="modal-header">
-                        <span className="close-icon" onClick={closeModal}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </span>
-                        <span className="close-text" onClick={closeModal}>
-                            Fermer
-                        </span>
-                    </div>
-                    {youtubeVideoId && (
-                        <div className="video-container">
-                            <YouTube videoId={youtubeVideoId} opts={youtubeOptsMobile} />
+                {isMobile && (
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        contentLabel="Trailer Modal"
+                        className="modal"
+                        overlayClassName="overlay"
+                    >
+                        <div className="modal-header">
+                            <span className="close-icon" onClick={closeModal}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                            <span className="close-text" onClick={closeModal}>
+                                Fermer
+                            </span>
                         </div>
-                    )}
-                </Modal>
-                }
+                        {youtubeVideoId && (
+                            <div className="video-container">
+                                <YouTube videoId={youtubeVideoId} opts={youtubeOptsMobile} onReady={onPlayerReady} />
+                            </div>
+                        )}
+                    </Modal>
+                )}
 
                 <div className="bottomImg">
                     <span className="movieGenre">
@@ -201,6 +217,14 @@ const MovieDetails: React.FC = () => {
                         Scénario
                         <span className="labelItems">{movie.writers && movie.writers.length > 0 ? movie.writers.join(' . ') : "Non disponible"}</span>
                     </span>
+                    {user && (
+                        <button className="buttonAddFavorite" onClick={() => { addFavorite(movie._id, user); setRefresh(!refresh) }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="svgAddFavorite" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+                            </svg>
+                            <span>Ajouter aux favoris</span>
+                        </button>
+                    )}
                 </div>
             </header>
             <main>

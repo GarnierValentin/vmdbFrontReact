@@ -78,16 +78,6 @@
     align-items: center;
 }
 
-h2 {
-    height: 20px;
-    font-size: 16px;
-    margin-left: 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-right: 10px;
-    
-}
-
 .buttonRemoveFavorite {
     height: 36px;
     width: 160px;
