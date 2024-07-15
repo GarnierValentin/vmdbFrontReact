@@ -37,11 +37,6 @@ const MovieCard: React.FC<MovieProps> = ({
     return null;
   }
 
-  const handleAddFavorite = async () => {
-    await addFavorite(movie._id, user);
-    setRefresh(!refresh);
-  };
-
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
@@ -54,6 +49,16 @@ const MovieCard: React.FC<MovieProps> = ({
     };
     fetchFavorites();
   }, [user, movie, refresh]);
+
+  const handleAddFavorite = async () => {
+    await addFavorite(movie._id, user);
+    setRefresh(!refresh);
+  };
+
+  const handleRemoveFavorite = async () => {
+    await removeFavorite(movie._id, user);
+    setRefresh(!refresh);
+  };
 
   return (
     <div className="movie-card">
@@ -86,25 +91,22 @@ const MovieCard: React.FC<MovieProps> = ({
             <span>Voir plus en détail</span>
           </button>
         </>
-      )
-      }
-      {
-        isFavorite && (
-          <div>
-            <h2>{index + 1} - {movie.title}</h2>
-            <button className="buttonRemoveFavorite" onClick={() => { removeFavorite(movie._id, user); setRefresh(!refresh) }}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 13H2v-2h21v2z" />
-              </svg>
-              <span>Retirer des favoris</span>
-            </button>
-            <button className="buttonShowDetails" onClick={() => handleShowDetails(movie._id)}>
-              <span>Voir plus en détail</span>
-            </button>
-          </div>
-        )
-      }
-    </div >
+      )}
+      {isFavorite && (
+        <div>
+          <h2>{index + 1} - {movie.title}</h2>
+          <button className="buttonRemoveFavorite" onClick={() => { removeFavorite(movie._id, user); setRefresh(!refresh) }}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23 13H2v-2h21v2z" />
+            </svg>
+            <span>Retirer des favoris</span>
+          </button>
+          <button className="buttonShowDetails" onClick={() => handleShowDetails(movie._id)}>
+            <span>Voir plus en détail</span>
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

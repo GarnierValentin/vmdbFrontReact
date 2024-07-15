@@ -25,7 +25,7 @@ const MovieDetails: React.FC = () => {
     const [player, setPlayer] = useState<any>(null);
 
     const location = useLocation();
-    const { user, refresh, setRefresh } = location.state ?? { user: undefined, refresh: undefined, setRefresh: undefined };
+    // const { user, refresh, setRefresh } = location.state ?? { user: undefined, refresh: undefined, setRefresh: undefined };
 
     const apiBaseUrl = window.location.hostname === 'localhost'
         ? 'http://localhost:4040'
@@ -217,14 +217,14 @@ const MovieDetails: React.FC = () => {
                         Scénario
                         <span className="labelItems">{movie.writers && movie.writers.length > 0 ? movie.writers.join(' . ') : "Non disponible"}</span>
                     </span>
-                    {user && (
+                    {/* {user && (
                         <button className="buttonAddFavorite" onClick={() => { addFavorite(movie._id, user); setRefresh(!refresh) }}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="svgAddFavorite" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
                             </svg>
                             <span>Ajouter aux favoris</span>
                         </button>
-                    )}
+                    )} */}
                 </div>
             </header>
             <main>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './component/navBar';
 import BestChoice from './component/bestChoice';
+import MovieByGenre from './component/movieByGenre';
 import MovieDetails from './component/movieDetails';
 import FavoriteMovie from './component/favoriteMovie';
 
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<>
             <BestChoice user={user} refresh={refresh} setRefresh={setRefresh} />
+            <MovieByGenre user={user} refresh={refresh} setRefresh={setRefresh} />
             {user.email !== '' && user.sessionToken !== '' &&
               <FavoriteMovie user={user} refresh={refresh} setRefresh={setRefresh} />
             }
