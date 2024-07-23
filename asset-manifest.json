@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/vmdbFrontReact/static/css/main.9f2eb6a5.css",
-    "main.js": "/vmdbFrontReact/static/js/main.1c8723f7.js",
+    "main.css": "/vmdbFrontReact/static/css/main.debb9e0e.css",
+    "main.js": "/vmdbFrontReact/static/js/main.54896f2e.js",
     "static/js/453.e5a04842.chunk.js": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js",
     "static/media/pictureNotFound.jpg": "/vmdbFrontReact/static/media/pictureNotFound.6ea45e285faeb766ee5e.jpg",
     "static/media/imageDefault.png": "/vmdbFrontReact/static/media/imageDefault.cba8cd317dcfb4e5574d.png",
     "static/media/imdblogo.png": "/vmdbFrontReact/static/media/imdblogo.25564fd0aeeadebb1b24.png",
     "index.html": "/vmdbFrontReact/index.html",
-    "main.9f2eb6a5.css.map": "/vmdbFrontReact/static/css/main.9f2eb6a5.css.map",
-    "main.1c8723f7.js.map": "/vmdbFrontReact/static/js/main.1c8723f7.js.map",
+    "main.debb9e0e.css.map": "/vmdbFrontReact/static/css/main.debb9e0e.css.map",
+    "main.54896f2e.js.map": "/vmdbFrontReact/static/js/main.54896f2e.js.map",
     "453.e5a04842.chunk.js.map": "/vmdbFrontReact/static/js/453.e5a04842.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f2eb6a5.css",
-    "static/js/main.1c8723f7.js"
+    "static/css/main.debb9e0e.css",
+    "static/js/main.54896f2e.js"
   ]
 }
