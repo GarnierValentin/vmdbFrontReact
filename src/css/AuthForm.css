@@ -222,46 +222,63 @@ input {
   transform: translateX(200%);
 }
 
+.close {
+  display: flex;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px 30px;
+  background-color: #F5C518;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.close-text {
+  margin-top: 3px;
+}
+
 
 @media only screen and (max-width: 600px) {
-  
+
   .container.active .sign-in,
   .container.active .sign-up,
   .container.active .toggle-container {
     transform: none;
   }
-  
+
   .container {
     display: flex;
     flex-direction: column;
     padding: 15px;
     width: 100%;
   }
-  
+
   .sign-up {
     opacity: 1;
     margin-bottom: 20px;
   }
-  
+
   .sign-in,
   .sign-up {
     width: 100%;
   }
-  
+
   .toggle-container {
     width: 5%;
     left: 0;
   }
-  
+
   .toggle-container p,
   .toggle-container h1,
   .toggle-container button {
     display: none;
   }
-  
+
   .form-container {
     position: static;
   }
-  
+
 
 }
